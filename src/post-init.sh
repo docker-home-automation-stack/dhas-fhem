@@ -6,7 +6,7 @@ FHEM_DIR="/opt/fhem"
 
 # Add sources
 echo " - Adding sources to controls.txt"
-cp /src/controls.txt >> ${FHEM_DIR}/FHEM/controls.txt
+cp /src/controls.txt ${FHEM_DIR}/FHEM/controls.txt
 
 # Enable sources
 echo " - Installing add-ons"
