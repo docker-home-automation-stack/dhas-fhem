@@ -27,4 +27,4 @@ cp -f ${FHEM_DIR}/fhem.cfg ${FHEM_DIR}/fhem.cfg.default-dhas
 perl /fhem-merge-config.pl "/src/fhem.cfg.tmpl/*.cfg" "${FHEM_DIR}/fhem.cfg"
 
 # clear motd
-sed -i /^attr global motd .*/d "${FHEM_DIR}/fhem.cfg"
+sed -i "/^attr global motd .*/d" "${FHEM_DIR}/fhem.cfg"
