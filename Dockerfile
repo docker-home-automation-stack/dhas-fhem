@@ -39,4 +39,7 @@ LABEL org.opencontainers.image.description=${L_DESCR}
 
 RUN echo "org.opencontainers.image.created=${BUILD_DATE}\norg.opencontainers.image.authors=${L_AUTHORS}\norg.opencontainers.image.url=${L_URL}\norg.opencontainers.image.documentation=${L_USAGE}\norg.opencontainers.image.source=${L_VCS_URL}\norg.opencontainers.image.version=${IMAGE_VERSION}\norg.opencontainers.image.revision=${IMAGE_VCS_REF}\norg.opencontainers.image.vendor=${L_VENDOR}\norg.opencontainers.image.licenses=${L_LICENSES}\norg.opencontainers.image.title=${L_TITLE}\norg.opencontainers.image.description=${L_DESCR}" > /image_info.dhas-fhem
 
+COPY ./src/post-init.sh /post-init.sh
+COPY ./src/ /src/
+
 EXPOSE 7072 8083 8084 9093 9094
