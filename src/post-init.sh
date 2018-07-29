@@ -23,6 +23,7 @@ RET=$( cd ${FHEM_DIR}; perl fhem.pl 7072 "shutdown" 2>&1>/dev/null )
 
 # update fhem.cfg
 echo " - Pre-configuring fhem.cfg"
+cp -n ${FHEM_DIR}/www/tablet/index-example.html ${FHEM_DIR}/www/tablet/index.html
 cp -f ${FHEM_DIR}/fhem.cfg ${FHEM_DIR}/fhem.cfg.default-dhas
 perl /fhem-merge-config.pl "/src/fhem.cfg.tmpl/*.cfg" "${FHEM_DIR}/fhem.cfg"
 
