@@ -14,8 +14,10 @@ RET=$( cd ${FHEM_DIR}; perl fhem.pl fhem.cfg )
 while ! nc -z localhost 7072; do
   sleep 0.5
 done
-for LINE in "$( cat ${FHEM_DIR}/FHEM/controls.txt | tail -n +2 )"; do
-  RET=$( cd ${FHEM_DIR}; perl fhem.pl 7072 "update all $(echo ${LINE##*/controls_} | cut -d . -f 1)" 2>&1>/dev/null )
+rm -rf "${FHEM_DIR}/docs/commandref*"
+RET=$( cd ${FHEM_DIR}; perl fhem.pl 7072 "update all" 2>&1>/dev/null )
+while ! -s "${FHEM_DIR}/docs/commandref.html"; do
+  sleep 1
 done
 RET=$( cd ${FHEM_DIR}; perl fhem.pl 7072 "shutdown" 2>&1>/dev/null )
 
@@ -23,3 +25,6 @@ RET=$( cd ${FHEM_DIR}; perl fhem.pl 7072 "shutdown" 2>&1>/dev/null )
 echo " - Pre-configuring fhem.cfg"
 cp -f ${FHEM_DIR}/fhem.cfg ${FHEM_DIR}/fhem.cfg.default-dhas
 perl /fhem-merge-config.pl "/src/fhem.cfg.tmpl/*.cfg" "${FHEM_DIR}/fhem.cfg"
+
+# clear motd
+sed -i /^attr global motd .*/d "${FHEM_DIR}/fhem.cfg"
