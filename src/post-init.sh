@@ -10,7 +10,7 @@ cp /src/controls.txt ${FHEM_DIR}/FHEM/controls.txt
 
 # Enable sources
 echo " - Installing add-ons"
-RET=$( cd ${FHEM_DIR}; perl fhem.pl fhem.cfg 2&>1>/dev/null &)
+RET=$( cd ${FHEM_DIR}; perl fhem.pl fhem.cfg )
 while ! nc -z localhost 7072; do
   sleep 0.5
 done
