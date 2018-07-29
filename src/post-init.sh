@@ -15,7 +15,7 @@ while ! nc -z localhost 7072; do
   sleep 0.5
 done
 rm -rf "${FHEM_DIR}/docs/commandref*"
-RET=$( cd ${FHEM_DIR}; perl fhem.pl 7072 "update all" 2>&1>/dev/null )
+RET=$( cd ${FHEM_DIR}; perl fhem.pl 7072 "attr global autosave 0;defmod WEB FHEMWEB 8083;defmod WEBphone FHEMWEB 8084;defmod WEBtablet FHEMWEB 8085;update all;" 2>&1>/dev/null )
 while ! [ -s "${FHEM_DIR}/docs/commandref.html" ]; do
   sleep 1
 done
