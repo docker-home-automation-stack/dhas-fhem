@@ -75,6 +75,6 @@ foreach my $file (@files) {
     close($fh);
 }
 
-open( my $fh, '>', $fhemCfg.".new" );
+open( my $fh, '>', $fhemCfg );
 print $fh $CFG;
 close($fh);
