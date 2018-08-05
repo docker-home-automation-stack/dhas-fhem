@@ -1,8 +1,9 @@
 #!/bin/bash
+set -e
 
-#cd "$(readlink -f "$(dirname "${BASH_SOURCE}")")"/..
+[ ! "${FHEM_CLEANINSTALL}" = '1' ] && exit 0
 
-FHEM_DIR="/opt/fhem"
+cd "$(readlink -f "$(dirname "${BASH_SOURCE}")")"/..
 
 # Add sources
 echo " - Adding sources to controls.txt"
@@ -30,3 +31,5 @@ perl /fhem-merge-config.pl "/src/fhem.cfg.tmpl/*.cfg" "${FHEM_DIR}/fhem.cfg"
 
 # clear motd
 sed -i "/^attr global motd .*/d" "${FHEM_DIR}/fhem.cfg"
+
+exit 0
