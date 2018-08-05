@@ -31,7 +31,7 @@ function docker_tag_exists() {
 }
 if docker_tag_exists ${BASE} ${VARIANT}; then
   echo "Variant ${VARIANT} already existig on Docker Hub - skipping build."
-  continue
+  exit 0
 fi
 
 # Detect rolling tag for this build
