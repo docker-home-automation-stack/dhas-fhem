@@ -24,6 +24,9 @@ RET=$( cd ${FHEM_DIR}; perl fhem.pl 7072 "shutdown" 2>&1>/dev/null )
 
 # update fhem.cfg
 echo " - Pre-configuring fhem.cfg"
+mkdir -p ${FHEM_DIR}/certs
+ln -sf /certs/pki/ecc/fhem.crt ${FHEM_DIR}/certs/server-cert.pem
+ln -sf /certs/pki/ecc/fhem.key ${FHEM_DIR}/certs/server-key.pem
 cp -n /src/db.conf ${FHEM_DIR}/db.conf
 cp -n ${FHEM_DIR}/www/tablet/index-example.html ${FHEM_DIR}/www/tablet/index.html
 cp -f ${FHEM_DIR}/fhem.cfg ${FHEM_DIR}/fhem.cfg.default-dhas
