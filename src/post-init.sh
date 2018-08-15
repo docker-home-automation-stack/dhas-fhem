@@ -7,8 +7,8 @@ cd "$(readlink -f "$(dirname "${BASH_SOURCE}")")"/..
 
 # Creating PKI group
 echo " - Creating group for PKI access"
-addgroup -g ${PKI_GROUP_ID} ${PKI_GROUP}
-addgroup fhem ${PKI_GROUP}
+groupadd --force --gid ${PKI_GROUP_ID} ${PKI_GROUP} 2>&1>/dev/null
+adduser --quiet fhem ${PKI_GROUP} 2>&1>/dev/null
 
 # Add sources
 echo " - Adding sources to controls.txt"
