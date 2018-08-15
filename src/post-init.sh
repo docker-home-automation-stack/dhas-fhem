@@ -5,6 +5,11 @@ set -e
 
 cd "$(readlink -f "$(dirname "${BASH_SOURCE}")")"/..
 
+# Creating PKI group
+echo " - Creating group for PKI access"
+addgroup -g ${PKI_GROUP_ID} ${PKI_GROUP}
+addgroup fhem ${PKI_GROUP}
+
 # Add sources
 echo " - Adding sources to controls.txt"
 cp /src/controls.txt ${FHEM_DIR}/FHEM/controls.txt
