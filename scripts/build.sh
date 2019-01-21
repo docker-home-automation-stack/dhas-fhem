@@ -34,7 +34,7 @@ fi
 # get current FHEM image version
 docker pull ${FHEMIMAGE_BASE}:${TAG}
 FHEMIMAGE_ID=$(docker images --no-trunc --format "{{.ID}}" ${FHEMIMAGE_BASE}:${TAG})
-FHEMIMAGE_VERSION=$(docker inspect --format="{{json .Config.Labels}}" ${FHEMIMAGE_ID} | jq -r 'to_entries[] | select (.key == "org.fhem.version") | .value')
+FHEMIMAGE_VERSION=$(docker inspect --format="{{json .Config.Labels}}" ${FHEMIMAGE_ID} | jq -r 'to_entries[] | select (.key == "org.opencontainers.image.version") | .value')
 IMAGE_VERSION=$(git describe --tags --dirty --match "v[0-9]*")
 IMAGE_VERSION=${IMAGE_VERSION:-1}
 IMAGE_BRANCH=$( [[ -n "${TRAVIS_BRANCH}" && "${TRAVIS_BRANCH}" != "master" && "${TRAVIS_BRANCH}" != "${TRAVIS_TAG}" ]] && echo -n "${TRAVIS_BRANCH}" || echo -n "" )
